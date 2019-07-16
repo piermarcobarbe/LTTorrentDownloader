@@ -11,15 +11,24 @@ var outputFile;
 // Ignore invalid HTTPS cert
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-console.log(process.argv);
+// console.log(process.argv);
+
+usage = function () {
+    console.log("node main.js [TORRENT_DIRECTORY] [LOG_FILE]");
+    return;
+}
+if(process.argv.length > 4) usage();
 
 if(process.argv.length > 2){
     let tempTorrentDir = process.argv[2];
+
     if(tempTorrentDir ){
         torrentDir = tempTorrentDir;
         torrentDir = path.normalize(torrentDir + "/");
-        console.log("Download dir set to " + torrentDir);
+
     }
+
+    console.log("Download dir set to " + torrentDir);
 
     if(process.argv[3]) outputFile = process.argv[3];
 
